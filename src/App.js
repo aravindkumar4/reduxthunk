@@ -27,8 +27,24 @@ class App extends React.Component {
         <p>loading: {this.props.loading ? 'true' : 'false'}</p>
         <p>data: {JSON.stringify(this.props.data)}</p>
 
-        <img src={this.props.data} alt='' />
+        {
+          //  this.props.data.map((y) => (
+          //    <p>{y.outlets.m}</p>
+          //   ))
 
+          //this.props.data.map(x)
+          // console.log(x.bannerImage);
+          //<img src={x.bannerImage} alt='' />
+          // }
+          // {
+          this.props.data.map((x) => (
+            <img src={x.bannerImage} alt='' />
+          ))
+
+          //this.props.data.map(x)
+          // console.log(x.bannerImage);
+          //<img src={x.bannerImage} alt='' />
+        }
         <p>error: {this.props.error}</p>
         <button onClick={() => this.props.login()}>Login</button>
         {/* <img src={this.props.img} />;
@@ -65,7 +81,7 @@ const middleware = () => {
         // console.log(res.data.banners[0].bannerImage);
         dispatch({
           type: 'LOGIN_SUCCESS',
-          payload: res.data.banners[0].bannerImage,
+          payload: res.data.banners,
         });
       });
 
