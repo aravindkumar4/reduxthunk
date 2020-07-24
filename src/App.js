@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { Carousel } from 'react-responsive-carousel';
 
 // import {
 //   getVadiveluComedyAction,
@@ -24,8 +26,8 @@ class App extends React.Component {
     return (
       <>
         <h3>redux thunk</h3>
-        <p>loading: {this.props.loading ? 'true' : 'false'}</p>
-        <p>data: {JSON.stringify(this.props.data)}</p>
+        {/* <p>loading: {this.props.loading ? 'true' : 'false'}</p>
+        <p>data: {JSON.stringify(this.props.data)}</p> */}
 
         {
           //  this.props.data.map((y) => (
@@ -38,14 +40,27 @@ class App extends React.Component {
           // }
           // {
           this.props.data.map((x) => (
-            <img src={x.bannerImage} alt='' />
+            <Carousel showArrows={true}>
+              <div class='row'>
+                <img src={x.bannerImage} class='column' />
+                {x.outlets.length > 0 && (
+                  <select name='outletnames' id='outletid'>
+                    <option value='volvo'>
+                      {x.outlets.map((y) => y.outletName)}
+                    </option>
+                  </select>
+                )}
+                <h1>{x.outlets.map((y) => y.outletName)}</h1>
+              </div>
+            </Carousel>
           ))
 
           //this.props.data.map(x)
           // console.log(x.bannerImage);
           //<img src={x.bannerImage} alt='' />
         }
-        <p>error: {this.props.error}</p>
+
+        {/* <p>error: {this.props.error}</p> */}
         <button onClick={() => this.props.login()}>Login</button>
         {/* <img src={this.props.img} />;
         <button
